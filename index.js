@@ -12,7 +12,8 @@ const mongoose = require("mongoose");
 // DB Setup
 mongoose.connect("mongodb://localhost:27017/auth", {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
 var db = mongoose.connection;
