@@ -3,7 +3,8 @@ const User = require("../models/user");
 const config = require("../config");
 
 function tokenForUser(user) {
-  return jwt.endcode({}, config.secret);
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
 }
 
 exports.signup = function(req, res, next) {
@@ -38,7 +39,7 @@ exports.signup = function(req, res, next) {
         return next(err);
       }
       // Respond to request indicating the user was created
-      res.json({ success: true });
+      res.json({ token: tokenForUser(user) });
     });
   });
 };
