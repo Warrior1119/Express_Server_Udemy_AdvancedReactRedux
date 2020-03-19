@@ -22,6 +22,8 @@ const localLogin = new LocalStrategy(localOptions, function(
     if (!user) {
       return done(null, false);
     }
+
+    // compare password - is `password` equal to user.password
   });
 });
 
